@@ -1,0 +1,513 @@
+﻿<UserControl x:Class="Bookshelf.UI.BookInfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Bookshelf.UI"
+             x:Name="This"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" 
+             d:DesignWidth="300">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition
+        Height="auto"
+        />
+      <RowDefinition
+        Height="*"
+        />
+      <RowDefinition
+        Height="auto"
+        />
+    </Grid.RowDefinitions>
+    <Grid
+      Grid.Row="0"
+      >
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition
+          Width="*"
+          />
+        <ColumnDefinition
+          Width="auto"
+          />
+      </Grid.ColumnDefinitions>
+      <Grid
+        Grid.Column="0"
+        Margin="5 5 5 5"
+        >
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition
+            Width="auto"
+            />
+          <ColumnDefinition
+            Width="*"
+            />
+          <ColumnDefinition
+            Width="auto"
+            />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition
+            Height="auto"
+            />
+          <RowDefinition
+            Height="auto"
+            />
+          <RowDefinition
+            Height="auto"
+            />
+          <RowDefinition
+            Height="auto"
+            />
+          <RowDefinition
+            Height="auto"
+            />
+          <RowDefinition
+            Height="auto"
+            />
+          <RowDefinition
+            Height="auto"
+            />
+          <RowDefinition
+            Height="auto"
+            />
+          <RowDefinition
+            Height="auto"
+            />
+          <RowDefinition
+            Height="auto"
+            />
+          <RowDefinition
+            Height="auto"
+            />
+          <RowDefinition
+            Height="auto"
+            />
+          <RowDefinition
+            Height="auto"
+            />
+          <RowDefinition
+            Height="auto"
+            />
+          <RowDefinition
+            Height="*"
+            />
+        </Grid.RowDefinitions>
+        <Label
+          Grid.Column="0"
+          Grid.Row="0"
+          Content="{Binding UIdLabelContent}"
+          HorizontalContentAlignment="Right"
+          Margin="0 0 0 5"
+          />
+        <TextBox
+          Grid.Column="1"
+          Grid.Row="0"
+          Text="{Binding UId, Mode=TwoWay}"
+          VerticalContentAlignment="Center"
+          Margin="0 0 0 5"
+          />
+        <Button
+          Grid.Column="2"
+          Grid.Row="0"
+          Margin="5 0 0 5"
+          Width="25"
+          Command="{Binding OnSearchByUid}"
+          CommandParameter="{Binding ElementName=This}"
+          >
+          <StackPanel>
+            <Image
+              Source="pack://application:,,,/Bookshelf.UI;component/Search.png"
+              />
+          </StackPanel>
+        </Button>
+        <Label
+          Grid.Column="0"
+          Grid.Row="1"
+          Content="{Binding NameLabelContent}"
+          HorizontalContentAlignment="Right"
+          Margin="0 0 0 5"
+          />
+        <TextBox
+          Grid.Column="1"
+          Grid.Row="1"
+          Text="{Binding Name, Mode=TwoWay}"
+          VerticalContentAlignment="Center"
+          Margin="0 0 0 5"
+          />
+        <Label
+          Grid.Column="0"
+          Grid.Row="2"
+          Content="{Binding OriginalNameLabelContent}"
+          HorizontalContentAlignment="Right"
+          Margin="0 0 0 5"
+          />
+        <TextBox
+          Grid.Column="1"
+          Grid.Row="2"
+          Text="{Binding OriginalName, Mode=TwoWay}"
+          VerticalContentAlignment="Center"
+          Margin="0 0 0 5"
+          />
+        <Label
+          Grid.Column="0"
+          Grid.Row="3"
+          Content="{Binding AuthorLabelContent}"
+          HorizontalContentAlignment="Right"
+          Margin="0 0 0 5"
+          />
+        <ComboBox
+          Grid.Column="1"
+          Grid.Row="3"
+          ItemsSource="{Binding AuthorList}"
+          SelectedValue="{Binding AuthorID, Mode=TwoWay}"
+          SelectedValuePath="Id"
+          DisplayMemberPath="Name"
+          Margin="0 0 0 5"
+          />
+        <Button
+          Grid.Column="2"
+          Grid.Row="3"
+          Content="+"
+          Margin="5 0 0 5"
+          Width="25"
+          Command="{Binding OnAddAuthor}"
+          CommandParameter="{Binding ElementName=This}"
+          />
+        <Label
+          Grid.Column="0"
+          Grid.Row="4"
+          Content="{Binding SeriesLabelContent}"
+          HorizontalContentAlignment="Right"
+          Margin="0 0 0 5"
+          />
+        <ComboBox
+          Grid.Column="1"
+          Grid.Row="4"
+          ItemsSource="{Binding SeriesList}"
+          SelectedValue="{Binding SeriesID, Mode=TwoWay}"
+          SelectedValuePath="Id"
+          DisplayMemberPath="Name"
+          Margin="0 0 0 5"
+          />
+        <Button
+          Grid.Column="2"
+          Grid.Row="4"
+          Content="+"
+          Margin="5 0 0 5"
+          Command="{Binding OnAddSeries}"
+          CommandParameter="{Binding ElementName=This}"
+          />
+        <Label
+          Grid.Column="0"
+          Grid.Row="5"
+          Content="{Binding NextBookInSeriesLabelContent}"
+          HorizontalContentAlignment="Right"
+          Margin="0 0 0 5"
+          />
+        <ComboBox
+          Grid.Column="1"
+          Grid.Row="5"
+          ItemsSource="{Binding BooksListBySeries}"
+          SelectedValue="{Binding NextBookID, Mode=TwoWay}"
+          SelectedValuePath="Id"
+          DisplayMemberPath="Name"
+          Margin="0 0 0 5"
+          />
+        <Label
+          Grid.Column="0"
+          Grid.Row="6"
+          Content="{Binding TypeLabelContent}"
+          HorizontalContentAlignment="Right"
+          Margin="0 0 0 5"
+          />
+        <ComboBox
+          Grid.Column="1"
+          Grid.Row="6"
+          ItemsSource="{Binding TypeList}"
+          SelectedValue="{Binding TypeID, Mode=TwoWay}"
+          SelectedValuePath="Id"
+          DisplayMemberPath="Name"
+          Margin="0 0 0 5"
+          />
+        <Button
+          Grid.Column="2"
+          Grid.Row="6"
+          Content="+"
+          Margin="5 0 0 5"
+          Command="{Binding OnAddType}"
+          CommandParameter="{Binding ElementName=This}"
+          />
+        <Label
+          Grid.Column="0"
+          Grid.Row="7"
+          Content="{Binding PublishedLabelContent}"
+          HorizontalContentAlignment="Right"
+          Margin="0 0 0 5"
+          />
+        <TextBox
+          Grid.Column="1"
+          Grid.Row="7"
+          Text="{Binding Published, Mode=TwoWay}"
+          VerticalContentAlignment="Center"
+          Margin="0 0 0 5"
+          />
+        <Label
+          Grid.Column="0"
+          Grid.Row="8"
+          Content="{Binding FirstPublishedLabelContent}"
+          HorizontalContentAlignment="Right"
+          Margin="0 0 0 5"
+          />
+        <TextBox
+          Grid.Column="1"
+          Grid.Row="8"
+          Text="{Binding FirstPublished, Mode=TwoWay}"
+          VerticalContentAlignment="Center"
+          Margin="0 0 0 5"
+          />
+        <Label
+          Grid.Column="0"
+          Grid.Row="9"
+          Content="{Binding LanguageLabelContent}"
+          HorizontalContentAlignment="Right"
+          Margin="0 0 0 5"
+          />
+        <ComboBox 
+          Grid.Column="1"
+          Grid.Row="9"
+          ItemsSource="{Binding LanguageList}"
+          SelectedValue="{Binding LanguageID, Mode=TwoWay}"
+          SelectedValuePath="Id"
+          DisplayMemberPath="Name"
+          Margin=" 0 0 0 5"
+          />
+        <Button
+          Grid.Column="2"
+          Grid.Row="9"
+          Content="+"
+          Margin="5 0 0 5"
+          Command="{Binding OnAddLanguage}"
+          CommandParameter="{Binding ElementName=This}"
+          />
+        <Label
+          Grid.Column="0"
+          Grid.Row="10"
+          Content="{Binding LanguageOriginalLabelContent}"
+          HorizontalContentAlignment="Right"
+          Margin="0 0 0 5"
+          />
+        <ComboBox
+          Grid.Column="1"
+          Grid.Row="10"
+          ItemsSource="{Binding LanguageList}"
+          SelectedValue="{Binding LanguageOriginalID, Mode=TwoWay}"
+          SelectedValuePath="Id"
+          DisplayMemberPath="Name"
+          Margin=" 0 0 0 5"
+          />
+        <Button
+          Grid.Column="2"
+          Grid.Row="10"
+          Content="+"
+          Margin="5 0 0 5"
+          Command="{Binding OnAddLanguageOriginal}"
+          CommandParameter="{Binding ElementName=This}"
+          />
+        <Label
+          Grid.Column="0"
+          Grid.Row="11"
+          Content="{Binding CountryLabelContent}"
+          HorizontalContentAlignment="Right"
+          Margin="0 0 0 5"
+          />
+        <ComboBox
+          Grid.Column="1"
+          Grid.Row="11"
+          ItemsSource="{Binding CountryList}"
+          SelectedValue="{Binding CountryID, Mode=TwoWay}"
+          SelectedValuePath="Id"
+          DisplayMemberPath="Name"
+          Margin=" 0 0 0 5"
+          />
+        <Button
+          Grid.Column="2"
+          Grid.Row="11"
+          Content="+"
+          Margin="5 0 0 5"
+          Command="{Binding OnAddCountry}"
+          CommandParameter="{Binding ElementName=This}"
+          />
+        <Label
+          Grid.Column="0"
+          Grid.Row="12"
+          Content="{Binding CountryOriginalLabelContent}"
+          HorizontalContentAlignment="Right"
+          Margin="0 0 0 5"
+          />
+        <ComboBox
+          Grid.Column="1"
+          Grid.Row="12"
+          ItemsSource="{Binding CountryList}"
+          SelectedValue="{Binding CountryOriginalID, Mode=TwoWay}"
+          SelectedValuePath="Id"
+          DisplayMemberPath="Name"
+          Margin=" 0 0 0 5"
+          />
+        <Button
+          Grid.Column="2"
+          Grid.Row="12"
+          Content="+"
+          Margin="5 0 0 5"
+          Command="{Binding OnAddCountryOriginal}"
+          CommandParameter="{Binding ElementName=This}"
+          />
+        <Label
+          Grid.Column="0"
+          Grid.Row="13"
+          Content="{Binding PublisherLabelContent}"
+          HorizontalContentAlignment="Right"
+          Margin="0 0 0 5"
+          />
+        <ComboBox
+          Grid.Column="1"
+          Grid.Row="13"
+          ItemsSource="{Binding PublisherList}"
+          SelectedValue="{Binding PublisherID, Mode=TwoWay}"
+          SelectedValuePath="Id"
+          DisplayMemberPath="Name"
+          Margin=" 0 0 0 5"
+          />
+        <Button
+          Grid.Column="2"
+          Grid.Row="13"
+          Content="+"
+          Margin="5 0 0 5"
+          Command="{Binding OnAddPublisher}"
+          CommandParameter="{Binding ElementName=This}"
+          />
+        <Label
+          Grid.Column="0"
+          Grid.Row="14"
+          Content="{Binding PublisherOriginalLabelContent}"
+          HorizontalContentAlignment="Right"
+          Margin="0 0 0 5"
+          />
+        <ComboBox
+          Grid.Column="1"
+          Grid.Row="14"
+          ItemsSource="{Binding PublisherList}"
+          SelectedValue="{Binding PublisherOriginalID, Mode=TwoWay}"
+          SelectedValuePath="Id"
+          DisplayMemberPath="Name"
+          Margin=" 0 0 0 5"
+          />
+        <Button
+          Grid.Column="2"
+          Grid.Row="14"
+          Content="+"
+          Margin="5 0 0 5"
+          Command="{Binding OnAddPublisherOriginal}"
+          CommandParameter="{Binding ElementName=This}"
+          />
+      </Grid>
+      <Grid
+        Grid.Column="1"
+        >
+        <Grid.RowDefinitions>
+          <RowDefinition
+            Height="auto"
+            />
+          <RowDefinition
+            Height="auto"
+            />
+          <RowDefinition
+            Height="*"
+            />
+        </Grid.RowDefinitions>
+        <Border
+          Grid.Row="0"
+          BorderThickness="1"
+          BorderBrush="Black"
+          Margin="5 5 5 5"
+          >
+          <Image          
+            Width="200"
+            Height="300"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Stretch="Uniform"
+            Source="{Binding Image}"
+            />
+        </Border>
+        <Grid
+          Grid.Row="1"
+          Margin="5 0 5 5"
+          MinHeight="25"
+          >
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition
+              Width="1*"
+              />
+            <ColumnDefinition
+              Width="1*"
+              />
+          </Grid.ColumnDefinitions>
+          <Button
+            Grid.Column="0"
+            Margin="0 0 2 0"
+            Content="{Binding LoadButtonContent}"
+            Command="{Binding OnLoadButton}"
+            CommandParameter="{Binding ElementName=This}"
+            />
+          <Button
+            Grid.Column="1"
+            Margin="2 0 0 0"
+            Content="{Binding DeleteButtonContent}"
+            Command="{Binding OnDeleteButton}"
+            CommandParameter="{Binding ElementName=This}"
+            />
+        </Grid>
+      </Grid>
+    </Grid>
+    <Grid
+      Grid.Row="1"
+      >
+    </Grid>
+    <Grid
+      Grid.Row="2"
+      Margin="5 5 5 5"
+      MinHeight="25"
+      >
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition
+          Width="*"
+          />
+        <ColumnDefinition
+          MinWidth="100"
+          Width="auto"
+          />
+        <ColumnDefinition
+          MinWidth="100"
+          Width="auto"
+          />
+      </Grid.ColumnDefinitions>
+      <Button
+        Grid.Column="1"
+        Content="{Binding OKButtonContent}"
+        Command="{Binding OnOKButton}"
+        CommandParameter="{Binding ElementName=This}"
+        IsDefault="True"
+        Margin="0 0 2 0"
+        />
+      <Button
+        Grid.Column="2"
+        Content="{Binding CancelButtonContent}"
+        Margin="2 0 0 0"
+        Command="{Binding OnCancelButton}"
+        CommandParameter="{Binding ElementName=This}"
+        IsCancel="True"
+        />
+    </Grid>
+  </Grid>
+</UserControl>

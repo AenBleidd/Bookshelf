@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Verone xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <WorkingDir>D:\Dropbox\Development-1\Bookshelf\Bookshelf\#Verone</WorkingDir>
+  <Language>Cpp11</Language>
+  <ThreadsCount>1</ThreadsCount>
+  <IncludeDirs />
+  <Files />
+</Verone>

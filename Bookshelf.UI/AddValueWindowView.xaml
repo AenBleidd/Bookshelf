@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="Bookshelf.UI.AddValueWindowView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Bookshelf.UI"
+             mc:Ignorable="d" 
+             x:Name="This"
+             d:DesignHeight="150" d:DesignWidth="500">
+  <Grid
+    >
+    <Grid.RowDefinitions>
+      <RowDefinition
+        Height="auto"
+        />
+      <RowDefinition
+        Height="auto"
+        />
+      <RowDefinition
+        Height="*"
+        />
+      <RowDefinition
+        Height="auto"
+        />
+    </Grid.RowDefinitions>
+    <Label
+      Grid.Row="0"
+      Content="{Binding Label}"
+      Margin="5 5 5 5"
+      HorizontalContentAlignment="Center"
+      />
+    <TextBox
+      Grid.Row="1"
+      Margin="5 5 5 5"
+      Text="{Binding Value, Mode=TwoWay}"
+      Name="ValueTextBox"
+      />
+    <Grid
+      Grid.Row="3"
+      Margin="5 5 5 5"
+      Height="35"
+      >
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition
+          Width="*"
+          />
+        <ColumnDefinition
+          Width="100"
+          />
+        <ColumnDefinition
+          Width="100"
+          />
+      </Grid.ColumnDefinitions>
+      <Button
+        Content="OK"
+        Grid.Column="1"
+        IsDefault="True"
+        Margin="5 5 5 5"
+        Command="{Binding OnOKButton}"
+        CommandParameter="{Binding ElementName=This}"
+        />
+      <Button
+        Content="Cancel"
+        Grid.Column="2"
+        IsCancel="True"
+        Margin="5 5 5 5"
+        />
+    </Grid>
+  </Grid>
+</UserControl>
