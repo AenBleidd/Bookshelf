@@ -5,6 +5,7 @@ using System.Linq;
 
 using Bookshelf.DB;
 using Bookshelf.Utils;
+using System.Data.Entity;
 
 namespace Bookshelf.Data
 {
@@ -12,7 +13,7 @@ namespace Bookshelf.Data
   {
     private Book Book = new Book();
 
-    public BookInfo (int? BookId = null)
+    public BookInfo(int? BookId = null)
     {
       if (BookId != null)
       {
@@ -25,11 +26,24 @@ namespace Bookshelf.Data
 
     public bool Save()
     {
-      if (Book.Name == string.Empty || Book.Author == null)
+      if (Book.Name == string.Empty)
         return false;
       using (var db = new BookshelfDbContext())
       {
-        db.Books.Add(Book);
+        if (db.Books.Where(x => x.Id == Book.Id).Any())
+        {
+          var ExistingBook = db.Books.Where(x => x.Id == Book.Id).First();
+          foreach (var item in typeof(Book).GetProperties())
+          {
+            if (item.GetValue(Book) != item.GetValue(ExistingBook))
+            {
+              db.Books.Attach(Book);
+              db.Entry(Book).State = EntityState.Modified;
+            }
+          }          
+        }
+        else
+          db.Books.Add(Book);
         db.SaveChanges();
       }
       return true;
